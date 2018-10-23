@@ -26,7 +26,7 @@ I have implemented a guidelines for the design of the solution. Namely:
 
 ## Implementation notes for parts 1 and 2
 
-* I wanted to use an efficient in-memory structure that could scale well. Searching logs by log level, business or session ID is resolved in O(1) consequently. Searching logs by a given date range is resolved in O(n).
+* I wanted to use an efficient in-memory structure that could scale well. Searching logs by log level, business or session ID is resolved in ```O(1)``` consequently. Searching logs by a given date range is resolved in ```O(n)```.
 * I abstracted the aforementioned memory structure into a module called  ```IndexedDataStorage```. Not only this makes the implementation of the data structure reusable, but also very easy to extend. Adding a new index (say by request ID) is trivial now.
 * Note that building indexes in ```IndexedDataStorage``` does not increment memory complexity as indexes only contain references to the log objects. This means that there is a single in-memory object for every log.
 * The log parser was built into a specific module, abstracting the structure of logs and making it easy to extend.
@@ -37,3 +37,50 @@ I have implemented a guidelines for the design of the solution. Namely:
 * One approach to calculating min, max and average execution times is to store all executions of the given function. However, this does not scale well.
 * Imagine that you execute the function 1000 times. That would mean creating a 1000-length array and iterating through it constantly to calculate averages.
 * In order to provide an efficient implementation I used a bit of math and implemented a rolling average. This means that only the max, min, current average and number of executions are stored at any given time (only 4 numbers). This is a very efficient implementation that scales well - performance is not affected by the amouynt of times the function needs to execute.
+
+## Usage
+
+### Part 1
+
+```js
+require(["Logs/LogProcessor"], function(LogProcessor) {
+    // Test data provided in the exercise
+    var data = "";
+    data += "2012-09-13 16:04:22 DEBUG SID:34523 BID:1329 RID:65d33 'Starting new session'\n"; // #1
+    data += "2012-09-13 16:04:30 DEBUG SID:34523 BID:1329 RID:54f22 'Authenticating User'\n"; // #2
+    data += "2012-09-13 16:05:30 DEBUG SID:42111 BID:319 RID:65a23 'Starting new session'\n"; // #3
+    data += "2012-09-13 16:04:50 ERROR SID:34523 BID:1329 RID:54ff3 'Missing Authentication token'\n"; // #4
+    data += "2012-09-13 16:05:31 DEBUG SID:42111 BID:319 RID:86472 'Authenticating User'\n"; // #5
+    data += "2012-09-13 16:05:31 DEBUG SID:42111 BID:319 RID:7a323 'Deleting asset with ID 543234'\n"; // #6
+    data += "2012-09-13 16:05:32 WARN SID:42111 BID:319 RID:7a323 'Invalid asset ID'"; // #7
+
+    var lp = new LogProcessor();
+    lp.processInput(data);
+
+    // Get all log lines with a given log level
+    lp.getLogsByLogLevel("WARN");
+    /*
+        {
+            "description":"Invalid asset ID",
+            "date":"2012-09-13T19:05:32.000Z",
+            "loglevel":"WARN",
+            "sid":"42111",
+            "bid":"319",
+            "rid":"7a323"
+        }
+    */ 
+
+    // Get all log lines belonging to a given business
+    lp.getLogsByBusiness("1329");
+
+    // Get all log lines for a given session id
+    lp.getLogsByBusiness("319");
+
+    // Get all log lines within a given date range
+    lp.getLogsByDateRange("2012-09-13 16:04:22", "2012-09-13 16:04:50");
+});
+```
+
+## Tests
+
+* Click here to run the test suite for 
