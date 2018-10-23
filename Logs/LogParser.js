@@ -12,7 +12,9 @@ define(function() {
     function parseLine(lineStr) {
         try {
             // Separate the log's metadata and description
-            var splitLog = lineStr.split("'"),
+            var splitLog = lineStr
+                    .trim()
+                    .split("'"),
                 logMetadata = splitLog[0].split(" "),
                 logDescription = splitLog[1];
             // Prepare the object containing all the information for a single log
