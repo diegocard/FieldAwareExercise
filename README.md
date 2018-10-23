@@ -70,14 +70,14 @@ require(["Logs/LogProcessor"], function(LogProcessor) {
     // Get all log lines with a given log level
     lp.getLogsByLogLevel("WARN");
     /*
-        {
-            "description":"Invalid asset ID",
-            "date":"2012-09-13T19:05:32.000Z",
-            "loglevel":"WARN",
-            "sid":"42111",
-            "bid":"319",
-            "rid":"7a323"
-        }
+    {
+        "description":"Invalid asset ID",
+        "date":"2012-09-13T19:05:32.000Z",
+        "loglevel":"WARN",
+        "sid":"42111",
+        "bid":"319",
+        "rid":"7a323"
+    }
     */ 
 
     // Get all log lines belonging to a given business
@@ -124,6 +124,13 @@ require(["Performance/PerfDecorator"], function(PerfDecorator) {
 
     // Print all log information
     decoratedFunc.logPerfInfo();
+    /*
+    Function: delayedFunction
+    NumSamples: 10
+    Min: 52ms
+    Max: 94ms
+    Average: 69.2ms
+    */
 });
 ```
 
