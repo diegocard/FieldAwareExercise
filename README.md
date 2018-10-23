@@ -38,7 +38,7 @@ I have implemented a guidelines for the design of the solution. Namely:
 
 * I wanted to use an efficient in-memory structure that could scale well. Searching logs by log level, business or session ID is resolved in ```O(1)``` consequently. Searching logs by a given date range is resolved in ```O(n)```.
 * I abstracted the aforementioned memory structure into a module called  ```IndexedDataStorage```. Not only this makes the implementation of the data structure reusable, but also very easy to extend. Adding a new index (say by request ID) is trivial now.
-* Note that building indexes in ```IndexedDataStorage``` does not increment memory complexity as indexes only contain references to the log objects. This means that there is a single in-memory object for every log.
+* Note that building indexes in ```IndexedDataStorage``` does not increment memory complexity as indexes only contain references to the log objects. This means that there is only a single in-memory object for every log.
 * The log parser was built into a specific module, abstracting the structure of logs and making it easy to extend.
 
 ### Part 3
