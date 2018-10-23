@@ -22,6 +22,13 @@ I have implemented a guidelines for the design of the solution. Namely:
 * Abstract all reusable components into independent modules
 * Implement a robust unit testing suite, using Mocha and Chai
 
+## Repo structure
+
+- [Logs](https://github.com/diegocard/FieldAwareExercise/tree/master/Logs): Contains the LogParser and LogProcessor modules which parse and process logs respectively for parts 1 and 2. Also contains tests for these modules.
+- [Performance](https://github.com/diegocard/FieldAwareExercise/tree/master/Performance): Contains the PerfDecorator module for part 3. Also contains tests for this module.
+- [Utils](https://github.com/diegocard/FieldAwareExercise/tree/master/Utils): Contains the IndexedDataStorage module which is a reusable efficient in-memory data structure used for parts 1 and 2, and the JSUtils module which contains reusable utilities. Also contains tests for these modules.
+- [README.md](https://github.com/diegocard/FieldAwareExercise/blob/master/README.md): The documentation you are currently reading.
+
 ## Implementation notes for parts 1 and 2
 
 * I wanted to use an efficient in-memory structure that could scale well. Searching logs by log level, business or session ID is resolved in ```O(1)``` consequently. Searching logs by a given date range is resolved in ```O(n)```.
