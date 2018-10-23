@@ -26,6 +26,22 @@ require(
                     expect(decoratedFunc.NumSamples).to.equal(10);
                 });
 
+                it('should not store information prior to the function being decorated', function(){
+                    var testFunc = function() {
+                        return 1;
+                    }
+                    // Execute the function 10 times           
+                    for (var i=0; i<10; i++) {
+                        testFunc();
+                    }
+                    // Then decorate the function and execute it 10 more times
+                    var decoratedFunc = PerfDecorator(testFunc);
+                    for (var i=0; i<10; i++) {
+                        decoratedFunc();
+                    }
+                    expect(decoratedFunc.NumSamples).to.equal(10);
+                });
+
                 it('should register reasonable min execution times', function(){
                     var decoratedFunc = PerfDecorator(createDelayedFunction(50, 100));
                     for (var i=0; i<3; i++) {
