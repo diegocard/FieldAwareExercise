@@ -40,7 +40,7 @@ I have implemented a guidelines for the design of the solution. Namely:
 
 ## Usage
 
-### Part 1
+### Parts 1 and 2
 
 ```js
 require(["Logs/LogProcessor"], function(LogProcessor) {
@@ -81,6 +81,42 @@ require(["Logs/LogProcessor"], function(LogProcessor) {
 });
 ```
 
+### Part 3
+
+```js
+require(["Performance/PerfDecorator"], function(PerfDecorator) {
+    
+    // Creates a function that takes in the time range between minDelay and maxDelay
+    function createDelayedFunction(minDelay, maxDelay) {
+        return function delayedFunction() {
+            var delay = Math.floor(Math.random()*(maxDelay-minDelay+1)+minDelay);
+            var start = new Date().getTime();
+            while ((new Date() - start) < delay) {}
+            return 1;
+        }
+    }
+
+    // Create a function that takes in between 50 too 100 ms to execute
+    var decoratedFunc = PerfDecorator(createDelayedFunction(50, 100));
+
+    // Execute the function 10 times
+    for (var i=0; i<10; i++) {
+        decoratedFunc();
+    }
+
+    // Get min, average and max execution times
+    var minTime = decoratedFunc.Min;
+    var avgTime = decoratedFunc.Average;
+    var maxTime = decoratedFunc.Max;
+
+    // Read the amount of executions
+    var numSamples = decoratedFunc.NumSamples;
+
+    // Print all log information
+    decoratedFunc.logPerfInfo();
+});
+```
+
 ## Tests
 
-* Click here to run the test suite for 
+* [Click here]() to run the test suite for 
