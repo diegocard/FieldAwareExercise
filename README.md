@@ -106,7 +106,7 @@ require(["Performance/PerfDecorator"], function(PerfDecorator) {
         }
     }
 
-    // Create a function that takes in between 50 too 100 ms to execute
+    // Create a function that takes in between 50 to 100 ms to execute
     var decoratedFunc = PerfDecorator(createDelayedFunction(50, 100));
 
     // Execute the function 10 times
