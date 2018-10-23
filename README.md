@@ -29,14 +29,16 @@ I have implemented a guidelines for the design of the solution. Namely:
 - [Utils](https://github.com/diegocard/FieldAwareExercise/tree/master/Utils): Contains the IndexedDataStorage module which is a reusable efficient in-memory data structure used for parts 1 and 2, and the JSUtils module which contains reusable utilities. Also contains tests for these modules.
 - [README.md](https://github.com/diegocard/FieldAwareExercise/blob/master/README.md): The documentation you are currently reading.
 
-## Implementation notes for parts 1 and 2
+## Implementation notes
+
+### Parts 1 and 2
 
 * I wanted to use an efficient in-memory structure that could scale well. Searching logs by log level, business or session ID is resolved in ```O(1)``` consequently. Searching logs by a given date range is resolved in ```O(n)```.
 * I abstracted the aforementioned memory structure into a module called  ```IndexedDataStorage```. Not only this makes the implementation of the data structure reusable, but also very easy to extend. Adding a new index (say by request ID) is trivial now.
 * Note that building indexes in ```IndexedDataStorage``` does not increment memory complexity as indexes only contain references to the log objects. This means that there is a single in-memory object for every log.
 * The log parser was built into a specific module, abstracting the structure of logs and making it easy to extend.
 
-## Implementation notes for part 3
+### Part 3
 
 * There are multiple ways to implement wrappers or decorators in JavaScript. By far the best approach would be to use ES6/7 function decorators (similar to decorators on Java or Python). However, these are not available in NetSuite environments and require transpiling. Therefore I opted for a more traditional implementation of the decorator pattern that works everywhere.
 * One approach to calculating min, max and average execution times is to store all executions of the given function. However, this does not scale well.
