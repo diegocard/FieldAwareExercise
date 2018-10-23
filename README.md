@@ -54,7 +54,7 @@ I have implemented a guidelines for the design of the solution. Namely:
 
 ```js
 require(["Logs/LogProcessor"], function(LogProcessor) {
-    // Test data provided in the exercise
+    // Test data provided for the exercise
     var data = 
     `2012-09-13 16:04:22 DEBUG SID:34523 BID:1329 RID:65d33 'Starting new session'
     2012-09-13 16:04:30 DEBUG SID:34523 BID:1329 RID:54f22 'Authenticating User'
