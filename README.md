@@ -96,7 +96,7 @@ require(["Logs/LogProcessor"], function(LogProcessor) {
 ```js
 require(["Performance/PerfDecorator"], function(PerfDecorator) {
     
-    // Creates a function that executes in random time in the time range between minDelay and maxDelay
+    // Creates a function that executes in a random time between minDelay and maxDelay
     function createDelayedFunction(minDelay, maxDelay) {
         return function delayedFunction() {
             var delay = Math.floor(Math.random()*(maxDelay-minDelay+1)+minDelay);
