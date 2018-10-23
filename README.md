@@ -55,14 +55,14 @@ I have implemented a guidelines for the design of the solution. Namely:
 ```js
 require(["Logs/LogProcessor"], function(LogProcessor) {
     // Test data provided in the exercise
-    var data = "";
-    data += "2012-09-13 16:04:22 DEBUG SID:34523 BID:1329 RID:65d33 'Starting new session'\n"; // #1
-    data += "2012-09-13 16:04:30 DEBUG SID:34523 BID:1329 RID:54f22 'Authenticating User'\n"; // #2
-    data += "2012-09-13 16:05:30 DEBUG SID:42111 BID:319 RID:65a23 'Starting new session'\n"; // #3
-    data += "2012-09-13 16:04:50 ERROR SID:34523 BID:1329 RID:54ff3 'Missing Authentication token'\n"; // #4
-    data += "2012-09-13 16:05:31 DEBUG SID:42111 BID:319 RID:86472 'Authenticating User'\n"; // #5
-    data += "2012-09-13 16:05:31 DEBUG SID:42111 BID:319 RID:7a323 'Deleting asset with ID 543234'\n"; // #6
-    data += "2012-09-13 16:05:32 WARN SID:42111 BID:319 RID:7a323 'Invalid asset ID'"; // #7
+    var data = 
+    `2012-09-13 16:04:22 DEBUG SID:34523 BID:1329 RID:65d33 'Starting new session'
+    2012-09-13 16:04:30 DEBUG SID:34523 BID:1329 RID:54f22 'Authenticating User'
+    2012-09-13 16:05:30 DEBUG SID:42111 BID:319 RID:65a23 'Starting new session'
+    2012-09-13 16:04:50 ERROR SID:34523 BID:1329 RID:54ff3 'Missing Authentication token'
+    2012-09-13 16:05:31 DEBUG SID:42111 BID:319 RID:86472 'Authenticating User'
+    2012-09-13 16:05:31 DEBUG SID:42111 BID:319 RID:7a323 'Deleting asset with ID 543234'
+    2012-09-13 16:05:32 WARN SID:42111 BID:319 RID:7a323 'Invalid asset ID'`;
 
     var lp = new LogProcessor();
     lp.processInput(data);
@@ -84,7 +84,7 @@ require(["Logs/LogProcessor"], function(LogProcessor) {
     lp.getLogsByBusiness("1329");
 
     // Get all log lines for a given session id
-    lp.getLogsByBusiness("319");
+    lp.getLogsBySession("319");
 
     // Get all log lines within a given date range
     lp.getLogsByDateRange("2012-09-13 16:04:22", "2012-09-13 16:04:50");
