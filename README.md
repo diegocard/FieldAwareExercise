@@ -1,5 +1,3 @@
-# FieldAware Exercise
-
 ## Requirements
 
 1) Write a program in javascript that reads the log entries from a file and stores them in appropriate data structures. The data should be stored in memory, ie. only use standard in memory data structures, not an external database. We would like to see demonstrations of good practice: e.g. good variable and function naming, code documentation and unit tests.
@@ -119,4 +117,7 @@ require(["Performance/PerfDecorator"], function(PerfDecorator) {
 
 ## Tests
 
-* [Click here]() to run the test suite for 
+* [Click here](https://diegocard.com/FieldAwareExercise/Logs/LogTests.html) to run the test suite for logging-related modules (part 1 and 2).
+* [Click here](https://diegocard.com/FieldAwareExercise/Performance/PerfTests.html) to run the test suite for the performance decorator module (part 3).
+* [Click here](https://diegocard.com/FieldAwareExercise/Utils/UtilsTests.html) to run the test suite for utility methods.
+
