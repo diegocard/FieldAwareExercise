@@ -4,7 +4,7 @@ require(
         var expect = chai.expect;
         mocha.setup('bdd')
 
-        // Test data provided in the exercise
+        // Test data provided for the exercise
         var testData = "";
         testData += "2012-09-13 16:04:22 DEBUG SID:34523 BID:1329 RID:65d33 'Starting new session'\n";
         testData += "2012-09-13 16:04:30 DEBUG SID:34523 BID:1329 RID:54f22 'Authenticating User'\n";
