@@ -46,7 +46,7 @@ I have implemented a guidelines for the design of the solution. Namely:
 * There are multiple ways to implement wrappers or decorators in JavaScript. By far the best approach would be to use ES6/7 function decorators (similar to decorators on Java or Python). However, these are not available in NetSuite environments and require transpiling. Therefore I opted for a more traditional implementation of the decorator pattern that works everywhere.
 * One approach to calculating min, max and average execution times is to store all executions of the given function. However, this does not scale well.
 * Imagine that you execute the function 1000 times. That would mean creating a 1000-length array and iterating through it constantly to calculate averages.
-* In order to provide an efficient implementation I used a bit of math and implemented a rolling average. This means that only the max, min, current average and number of executions are stored at any given time (only 4 numbers). This is a very efficient implementation that scales well - performance is not affected by the amouynt of times the function needs to execute.
+* In order to provide an efficient implementation I used a bit of math and implemented a rolling average. This means that only the max, min, current average and number of executions are stored at any given time (only 4 numbers). This is a very efficient implementation that scales well - performance is not affected by the amount of times the function needs to execute.
 
 ## Usage
 
